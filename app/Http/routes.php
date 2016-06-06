@@ -11,7 +11,7 @@
 |
 */
 
-Route::get('/', 'WelcomeController@index');
+/*Route::get('/', 'WelcomeController@index');
 
 Route::get('/home', 'HomeController@index');
 
@@ -29,8 +29,29 @@ Route::get('about','PagesController@about');
 Route::get('contact','PagesController@contact');
 
 Route::get('articles','ArticlesController@index');
-Route::post('articles/add','ArticlesController@add');
+Route::post('articles/add','ArticlesController@add');*/
+
+//猛狮路由
+Route::get('/','ListController@index');
+
+Route::get('List','ListController@index');//列表
 
 
+Route::get('Add/index','AddController@index');//添加页
+Route::post('Add/insert','AddController@insert');//数据插入
 
 
+Route::get('Update','UpdateController@index');//修改页
+
+
+Route::get('Sign/index/{mid}/{openid}','SignController@index');//签到页
+//Route::get('Sign/index/mid/{mid}/openid/{openid}','SignController@index');//签到页
+
+Route::post('Sign/check','SignController@check');//会议签到
+
+
+//test
+Route::get('user/{id}', function($id)
+{
+    return 'User '.$id;
+});
