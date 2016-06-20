@@ -20,7 +20,11 @@
 	<input type="hidden" name="m_id" value="{{$mid}}"/>
 	<input type="hidden" name="s_openid" value="{{$openid}}"/>
 	<input type="hidden" name="r_date" value="{{time()}}"/>
+	@if($record == 'existed')
+	<input type="button" value="已签到" />
+	@else
 	{!!Form::submit('签到')!!}
+	@endif
 	{!!Form::close()!!}
 </body>
 </html>

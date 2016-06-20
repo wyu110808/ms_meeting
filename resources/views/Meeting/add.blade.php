@@ -7,8 +7,8 @@
 <body>
 
 	<div><h1>预约会议</h1></div>
-	<div><a href="{{url('/List')}}">返回列表</a></div>
-	{!!Form::open(['url'=>'Add/insert'])!!}
+	<div><a href="{{url('/Meeting/index')}}">返回列表</a></div>
+	{!!Form::open(['url'=>'Meeting/insert'])!!}
 	<table>
 		<tr>
 			<td>{!!Form::label('m_subject','会议主题:')!!}</td>
@@ -23,7 +23,7 @@
 			<td>{!!Form::text('m_address',null)!!}</td>
 		</tr>
 		<tr>
-			<td>{!!Form::label('m_member','会议对象:')!!}</td>
+			<td>{!!Form::label('m_member','会议成员:')!!}</td>
 			<td>{!!Form::text('m_member',null)!!}</td>
 		</tr>
 		<tr>
@@ -56,6 +56,12 @@
 		</tr>
 	</table>
 	{!!Form::close()!!}
-
+	@if ($errors->any())
+        <div>
+            @foreach($errors->all() as $error)
+                <p>{{ $error }}</p>
+            @endforeach
+        </div>
+    @endif
 </body>
 </html>

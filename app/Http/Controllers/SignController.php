@@ -13,12 +13,27 @@ use DB;
 class SignController extends Controller {
 
 	//签到
+    /**
+     * @param $mid 会议id
+     * @param $openid  会员openid
+     */
     public function index($mid,$openid){
 
         //$mid=$_GET['mid'];
         //$openid=$_GET['openid'];
 
         //echo $mid.'<br/>'.$openid;
+
+
+        //检查是否已经签到
+        $check_record=DB::table('record')->where('m_id',$mid)->where('s_openid',$openid)->first();
+       // var_dump($check_record);
+        //die;
+        if($check_record){
+            $record='existed';
+        }else{
+            $record='not';
+        }
 
         $meeting_arr=DB::table('meeting')->where('m_id',$mid)->first();
 
@@ -35,6 +50,7 @@ class SignController extends Controller {
         return view('Sign/index',[
             'mid'=>$mid,
             'openid'=>$openid,
+            'record'=>$record,
             'meeting'=>$meeting_arr,
             'member'=>$member,
         ]);
@@ -47,7 +63,7 @@ class SignController extends Controller {
 
         //签到插入数据
         $res=Record::create($input);
-        var_dump($res);
+        //var_dump($res);
         if($res){
             echo "<script>alert('签到成功');</script>>";
         }

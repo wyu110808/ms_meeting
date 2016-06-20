@@ -6,11 +6,26 @@
 </head>
 <body>
 	<div class=""><h1>会议列表</h1></div>
-	<div><a href="{{url('/Add/index')}}"><input type="button" value="添加会议" /></a></div>
-	<div><a href="{{url('/Update/index')}}"><input type="button" value="修改会议" /></a></div>
+	<div><a href="{{url('/Staff/index')}}"><input type="button" value="员工列表" /></a></div>
+	<div><a href="{{url('/Meeting/add')}}"><input type="button" value="添加会议" /></a></div>
 @foreach($meeting_arr as $k=>$v)
 	<div>{{$v->m_type}} -- {{$v->m_subject}}</div>
-	<div><input type="button" value="待召开" /></div>
+	{!!Form::open(['method'=>'POST','action'=>['MeetingController@delete']])!!}
+	@if($v->m_state == 1)
+	<div>待召开</div>
+	<div><a href="{{url('/Meeting/update',[$v->m_id])}}"><input type="button" value="修改会议" /></a></div>
+	<div>
+		<input type="hidden" name="mid" value="{{$v->m_id}}"/>
+		<input type="submit" value="取消会议" onclick="javascript:return del()"/>
+	</div>
+	@else
+	<div>已召开</div>
+	<div>
+		<input type="hidden" name="mid" value="{{$v->m_id}}"/>
+		<input type="submit" value="删除会议" onclick="javascript:return del()"/>
+	</div>
+	@endif
+	{!!Form::close()!!}
 	<div>
 		<ul>
 			@foreach($v->member as $kk=>$vv)
@@ -19,6 +34,18 @@
 			@endforeach
 		</ul>
 	</div>
+	<hr />
 @endforeach
+<script type="text/javascript">
+	
+	function del(){
+	var msg = "您真的确定要删除吗？请确认！"; 
+	  if (confirm(msg)==true){ 
+	    return true; 
+	  }else{ 
+	    return false; 
+	  } 
+	}
+</script>
 </body>
 </html>
