@@ -32,12 +32,12 @@
 		</tr>
 		<tr>
 			<td>{!!Form::label('m_date1','开始时间:')!!}</td>
-			<td><input type="datetime-local" name="m_date2" id="" /></td>
+			<td>{!!Form::input('date','m_date1',date('Y-m-d'))!!}</td>
 			
 		</tr>
 		<tr>
 			<td>{!!Form::label('m_date2','结束时间:')!!}</td>
-			<td>{!!Form::input('datetime-local','m_date2')!!}</td>
+			<td>{!!Form::input('date','m_date2',date('Y-m-d'))!!}</td>
 		</tr>
 		<tr>
 			<td>{!!Form::label('m_mc','主持人:')!!}</td>

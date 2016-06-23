@@ -80,8 +80,7 @@ class MeetingController extends Controller {
         //接收
         //$input= Request::all();
         //return $input;
-        $test=$request->input('m_date1');
-        var_dump($test);die;
+
 
         $this->validate_re($request);
 

@@ -43,23 +43,13 @@ class CheckOpenidMiddleware {
 
 				//事务保存
 				DB::beginTransaction();
-				$staff=Staff::findOrNew($info->openid);
-				$staff->openid=$info->openid;
-				$staff->nickname = $info->nickname;
-				$staff->sex = $info->sex;
-				$staff->country = $info->country;
-				$staff->province = $info->province;
-				$staff->city = $info->city;
-				$staff->headimgurl = $info->headimgurl;
-				$staff->save();
-				DB::commit();
 
 
 			}else{
 				//3、无code，属于第一次访问，只能跳转到微信授权页
 				//回调地址
 				$callback_url=$request->url();
-				//$callback_url='msmeeting.com/Weixin/index';
+				
 				//微信授权
 				$url=sprintf('https://open.weixin.qq.com/connect/oauth2/authorize?appid=%s&redirect_uri=%s&response_type=code&scope=snsapi_userinfo&state=msmeeting&connect_redirect=1#wechat_redirect',env('WEIXIN_APP_ID'),urlencode($callback_url));
 				header('location:'.$url);exit;
