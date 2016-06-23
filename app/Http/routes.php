@@ -31,10 +31,10 @@ Route::post('Sign/check','SignController@check');//会议签到
 
 //员工模块
 Route::get('Staff/index','StaffController@index');//员工列表
-Route::get('Staff/add','StaffController@add');//添加员工
+Route::get('Staff/add/{openid}','StaffController@add');//添加员工
 Route::post('Staff/insert','StaffController@insert');//添加员工
 Route::get('Staff/update/{openid}','StaffController@update');//更新员工
 Route::post('Staff/save','StaffController@save');//数据更新
 
 
-Route::get('Weixin/index','WeixinController@index');
+Route::get('Weixin/index/{openid?}','WeixinController@index');

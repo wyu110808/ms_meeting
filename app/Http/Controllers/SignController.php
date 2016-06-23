@@ -13,6 +13,13 @@ use DB;
 class SignController extends Controller {
 
 	//签到
+    public function __construct()
+    {
+        //中间件
+        $this->middleware('weixinaccess');
+        $this->middleware('checkopenid');
+    }
+
     /**
      * @param $mid 会议id
      * @param $openid  会员openid

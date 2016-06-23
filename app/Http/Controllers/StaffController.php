@@ -13,6 +13,13 @@ class StaffController extends Controller {
 
     protected $url='/Staff/index';
 
+    public function __construct(){
+        //调用中间件,中间件的命名在kernel.php
+        $this->middleware('weixinaccesstoken');
+        //echo '111';die;
+        $this->middleware('checkopenid');
+    }
+
 	//员工列表
     public function index(){
 
@@ -26,7 +33,7 @@ class StaffController extends Controller {
 
 
     public function add(){
-        $this->middleware('')
+        //$this->middleware('')
         return view('Staff/add');
 
     }

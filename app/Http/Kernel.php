@@ -27,8 +27,8 @@ class Kernel extends HttpKernel {
 		'auth' => 'App\Http\Middleware\Authenticate',
 		'auth.basic' => 'Illuminate\Auth\Middleware\AuthenticateWithBasicAuth',
 		'guest' => 'App\Http\Middleware\RedirectIfAuthenticated',
-		'weixinaccess'=>'App\Http\Middleware\WeixinAccessToken',
-		'checkopenid'=>'App\Http\Middleware\CheckOpenid',
+		'weixinaccesstoken'=>'App\Http\Middleware\WeixinAccessTokenMiddleware',
+		'checkopenid'=>'App\Http\Middleware\CheckOpenidMiddleware',
 		
 	];
 
